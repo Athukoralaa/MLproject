@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+        h2 {
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 0;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+        input[type="submit"] {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="{{ url_for('predict_datapoint') }}" method="post">
+            <h1>
+                <legend>House Price Prediction</legend>
+            </h1>
+            <div class="mb-3">
+                <label class="form-label">Area (in square feet)</label>
+                <input class="form-control" type="number" name="area" placeholder="Enter the area of the house" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Number of Bedrooms</label>
+                <input class="form-control" type="number" name="bedrooms" placeholder="Enter the number of bedrooms" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Number of Bathrooms</label>
+                <input class="form-control" type="number" name="bathrooms" placeholder="Enter the number of bathrooms" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Number of Stories</label>
+                <input class="form-control" type="number" name="stories" placeholder="Enter the number of stories" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Main Road Access</label>
+                <select class="form-control" name="mainroad" required>
+                    <option class="placeholder" selected disabled value="">Select Main Road Access</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Guest Room</label>
+                <select class="form-control" name="guestroom" required>
+                    <option class="placeholder" selected disabled value="">Select Guest Room Availability</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Basement</label>
+                <select class="form-control" name="basement" required>
+                    <option class="placeholder" selected disabled value="">Select Basement Availability</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Hot Water Heating</label>
+                <select class="form-control" name="hotwaterheating" required>
+                    <option class="placeholder" selected disabled value="">Select Hot Water Heating Availability</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Air Conditioning</label>
+                <select class="form-control" name="airconditioning" required>
+                    <option class="placeholder" selected disabled value="">Select Air Conditioning Availability</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Parking Spaces</label>
+                <input class="form-control" type="number" name="parking" placeholder="Enter the number of parking spaces" required />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Preferred Area</label>
+                <select class="form-control" name="prefarea" required>
+                    <option class="placeholder" selected disabled value="">Select Preferred Area</option>
+                    <option value="yes">Yes</option>
+                    <option value="no">No</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Furnishing Status</label>
+                <select class="form-control" name="furnishingstatus" required>
+                    <option class="placeholder" selected disabled value="">Select Furnishing Status</option>
+                    <option value="furnished">Furnished</option>
+                    <option value="semi-furnished">Semi-furnished</option>
+                    <option value="unfurnished">Unfurnished</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <input class="btn btn-primary" type="submit" value="Predict House Price" />
+            </div>
+        </form>
+        <h2>
+            The predicted price is {{ results }}
+        </h2>
+    </div>
+</body>
+</html>
