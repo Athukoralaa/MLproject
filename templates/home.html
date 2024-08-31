@@ -3,144 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prediction Page</title>
+    <title>House Price Prediction</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnH1z8sV3Cw5b3nK6NbdwflNk4BGKV9gLh5hWPT1I6e1E1cV0s3kg5W6n3nJ3LSh3E1aE9Xjw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: #333;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
         }
         .container {
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 500px;
-            width: 100%;
+            max-width: 700px;
+            margin-top: 50px;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
             text-align: center;
+            margin-bottom: 30px;
+            color: #343a40;
         }
-        h2 {
-            color: #007bff;
-            margin-bottom: 20px;
+
+        .form-label {
+            font-weight: 500;
+            color: #495057;
         }
+
         .btn-primary {
-            background-color: #007bff;
-            border: none;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 10px 0;
-            cursor: pointer;
-            border-radius: 4px;
+            width: 100%;
+            padding: 10px;
+            font-size: 1.1rem;
+            border-radius: 5px;
             transition: background-color 0.3s ease;
         }
+
         .btn-primary:hover {
             background-color: #0056b3;
         }
-        input[type="submit"] {
-            width: 100%;
+
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #e9f7ef;
+            border-left: 5px solid #28a745;
+            border-radius: 5px;
+            font-size: 1.2rem;
+            color: #155724;
+        }
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #6c757d;
+            font-size: 14px;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 576px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            .btn-primary {
+                font-size: 1rem;
+            }
+            .result {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <h1><i class="fas fa-home"></i> House Price Prediction</h1>
         <form action="{{ url_for('predict_datapoint') }}" method="post">
-            <h1>
-                <legend>House Price Prediction</legend>
-            </h1>
             <div class="mb-3">
-                <label class="form-label">Area (in square feet)</label>
-                <input class="form-control" type="number" name="area" placeholder="Enter the area of the house" required />
+                <label class="form-label" for="area">Area (in square feet) <i class="fas fa-ruler-horizontal"></i></label>
+                <input class="form-control" type="number" id="area" name="area" placeholder="Enter the area of the house" required min="0">
             </div>
             <div class="mb-3">
-                <label class="form-label">Number of Bedrooms</label>
-                <input class="form-control" type="number" name="bedrooms" placeholder="Enter the number of bedrooms" required />
+                <label class="form-label" for="bedrooms">Number of Bedrooms <i class="fas fa-bed"></i></label>
+                <input class="form-control" type="number" id="bedrooms" name="bedrooms" placeholder="Enter the number of bedrooms" required min="0">
             </div>
             <div class="mb-3">
-                <label class="form-label">Number of Bathrooms</label>
-                <input class="form-control" type="number" name="bathrooms" placeholder="Enter the number of bathrooms" required />
+                <label class="form-label" for="bathrooms">Number of Bathrooms <i class="fas fa-bath"></i></label>
+                <input class="form-control" type="number" id="bathrooms" name="bathrooms" placeholder="Enter the number of bathrooms" required min="0">
             </div>
             <div class="mb-3">
-                <label class="form-label">Number of Stories</label>
-                <input class="form-control" type="number" name="stories" placeholder="Enter the number of stories" required />
+                <label class="form-label" for="stories">Number of Stories <i class="fas fa-building"></i></label>
+                <input class="form-control" type="number" id="stories" name="stories" placeholder="Enter the number of stories" required min="0">
             </div>
             <div class="mb-3">
-                <label class="form-label">Main Road Access</label>
-                <select class="form-control" name="mainroad" required>
-                    <option class="placeholder" selected disabled value="">Select Main Road Access</option>
+                <label class="form-label" for="mainroad">Main Road Access <i class="fas fa-road"></i></label>
+                <select class="form-select" id="mainroad" name="mainroad" required>
+                    <option selected disabled value="">Select Main Road Access</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
             </div>
             <div class="mb-3">
-                <label class="form-label">Guest Room</label>
-                <select class="form-control" name="guestroom" required>
-                    <option class="placeholder" selected disabled value="">Select Guest Room Availability</option>
+                <label class="form-label" for="guestroom">Guest Room <i class="fas fa-user-friends"></i></label>
+                <select class="form-select" id="guestroom" name="guestroom" required>
+                    <option selected disabled value="">Select Guest Room Availability</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
             </div>
             <div class="mb-3">
-                <label class="form-label">Basement</label>
-                <select class="form-control" name="basement" required>
-                    <option class="placeholder" selected disabled value="">Select Basement Availability</option>
+                <label class="form-label" for="basement">Basement <i class="fas fa-warehouse"></i></label>
+                <select class="form-select" id="basement" name="basement" required>
+                    <option selected disabled value="">Select Basement Availability</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
             </div>
             <div class="mb-3">
-                <label class="form-label">Hot Water Heating</label>
-                <select class="form-control" name="hotwaterheating" required>
-                    <option class="placeholder" selected disabled value="">Select Hot Water Heating Availability</option>
+                <label class="form-label" for="hotwaterheating">Hot Water Heating <i class="fas fa-fire"></i></label>
+                <select class="form-select" id="hotwaterheating" name="hotwaterheating" required>
+                    <option selected disabled value="">Select Hot Water Heating Availability</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
             </div>
             <div class="mb-3">
-                <label class="form-label">Air Conditioning</label>
-                <select class="form-control" name="airconditioning" required>
-                    <option class="placeholder" selected disabled value="">Select Air Conditioning Availability</option>
+                <label class="form-label" for="airconditioning">Air Conditioning <i class="fas fa-snowflake"></i></label>
+                <select class="form-select" id="airconditioning" name="airconditioning" required>
+                    <option selected disabled value="">Select Air Conditioning Availability</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
             </div>
             <div class="mb-3">
-                <label class="form-label">Parking Spaces</label>
-                <input class="form-control" type="number" name="parking" placeholder="Enter the number of parking spaces" required />
+                <label class="form-label" for="parking">Parking Spaces <i class="fas fa-car"></i></label>
+                <input class="form-control" type="number" id="parking" name="parking" placeholder="Enter the number of parking spaces" required min="0">
             </div>
             <div class="mb-3">
-                <label class="form-label">Preferred Area</label>
-                <select class="form-control" name="prefarea" required>
-                    <option class="placeholder" selected disabled value="">Select Preferred Area</option>
+                <label class="form-label" for="prefarea">Preferred Area <i class="fas fa-map-marker-alt"></i></label>
+                <select class="form-select" id="prefarea" name="prefarea" required>
+                    <option selected disabled value="">Select Preferred Area</option>
                     <option value="yes">Yes</option>
                     <option value="no">No</option>
                 </select>
             </div>
-            <div class="mb-3">
-                <label class="form-label">Furnishing Status</label>
-                <select class="form-control" name="furnishingstatus" required>
-                    <option class="placeholder" selected disabled value="">Select Furnishing Status</option>
+            <div class="mb-4">
+                <label class="form-label" for="furnishingstatus">Furnishing Status <i class="fas fa-couch"></i></label>
+                <select class="form-select" id="furnishingstatus" name="furnishingstatus" required>
+                    <option selected disabled value="">Select Furnishing Status</option>
                     <option value="furnished">Furnished</option>
                     <option value="semi-furnished">Semi-furnished</option>
                     <option value="unfurnished">Unfurnished</option>
                 </select>
             </div>
             <div class="mb-3">
-                <input class="btn btn-primary" type="submit" value="Predict House Price" />
+                <button type="submit" class="btn btn-primary"><i class="fas fa-calculator"></i> Predict House Price</button>
             </div>
         </form>
-        <h2>
-            The predicted price is {{ results }}
-        </h2>
+        {% if results %}
+        <div class="result">
+            <i class="fas fa-chart-line"></i> <strong>The predicted price is:</strong> ${{ results }}
+        </div>
+        {% endif %}
     </div>
+    <div class="footer">
+        &copy; 2024 House Price Prediction. All rights reserved.
+    </div>
+
+    <!-- Bootstrap JS and dependencies (Optional for interactive components) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Optional: Font Awesome JS for icons (if using any interactive icons) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js" integrity="sha512-Fo3rlrZj/k7ujTnH1z8sV3Cw5b3nK6NbdwflNk4BGKV9gLh5hWPT1I6e1E1cV0s3kg5W6n3nJ3LSh3E1aE9Xjw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>
