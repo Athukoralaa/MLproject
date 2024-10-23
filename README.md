@@ -79,3 +79,18 @@ The prediction pipeline component loads the trained model and preprocessor to ma
 1. **Install Dependencies:**
    ```sh
    pip install -r requirements.txt
+2. **Run the Application:**
+   ```sh
+   python application.py
+
+## Logging
+
+Logs are stored in the file:///c%3A/Users/Asus/Documents/Academic/Machine%20Learning/MLproject/logs/ directory, capturing various stages of the pipeline execution.
+
+## Configuration
+
+Configuration settings for data paths and model parameters are defined using dataclasses in the respective components.
+
+## Conclusion
+
+This project demonstrates a complete machine learning pipeline for house price prediction, from data ingestion to model training and prediction. The modular design allows for easy extension and customization.
