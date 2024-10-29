@@ -47,7 +47,7 @@ venv/
 
 The data ingestion component reads the dataset, splits it into training and testing sets, and saves them as CSV files.
 
-- **File:** file:///c%3A/Users/Asus/Documents/Academic/Machine%20Learning/MLproject/src/components/data_ingestion.py
+- **File:** file://MLproject/src/components/data_ingestion.py
 - **Class:** [`DataIngestion`](command:_github.copilot.openSymbolInFile?%5B%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2FC%3A%2FUsers%2FAsus%2FDocuments%2FAcademic%2FMachine%20Learning%2FMLproject%2Fsrc%2Fcomponents%2Fdata_ingestion.py%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%2C%22DataIngestion%22%2C%2204faac14-55bf-4525-b521-22bc821329e9%22%5D "c:\Users\Asus\Documents\Academic\Machine Learning\MLproject\src\components\data_ingestion.py")
 - **Method:** [`initiate_data_ingestion`](command:_github.copilot.openSymbolFromReferences?%5B%22%22%2C%5B%7B%22uri%22%3A%7B%22scheme%22%3A%22file%22%2C%22authority%22%3A%22%22%2C%22path%22%3A%22%2FC%3A%2FUsers%2FAsus%2FDocuments%2FAcademic%2FMachine%20Learning%2FMLproject%2Fsrc%2Fcomponents%2Fdata_ingestion.py%22%2C%22query%22%3A%22%22%2C%22fragment%22%3A%22%22%7D%2C%22pos%22%3A%7B%22line%22%3A24%2C%22character%22%3A8%7D%7D%5D%2C%2204faac14-55bf-4525-b521-22bc821329e9%22%5D "Go to definition")
 
