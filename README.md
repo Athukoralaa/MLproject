@@ -121,5 +121,5 @@ To deploy the house price prediction model, follow these steps:
 7. **CI/CD Pipeline:**
    Set up a CI/CD pipeline using GitHub Actions or any other CI/CD tool to automate the build, test, and deployment process. Ensure to include steps for running unit tests, building the Docker image, and deploying to your chosen environment.
 
-By following these steps, you can deploy the house price prediction model and make it accessible for real-time predictions.
+By following these steps, you can deploy the house price prediction model and make it accessible for real-time predictions..
 
