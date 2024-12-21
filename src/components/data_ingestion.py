@@ -49,7 +49,7 @@ class DataIngestion:
         except Exception as e:
             raise CustomException(e,sys)
         
-if __name__=="__main__":
+def model_train():
     obj=DataIngestion()
     train_data,test_data=obj.initiate_data_ingestion()
 

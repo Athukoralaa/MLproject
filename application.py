@@ -1,6 +1,8 @@
 from flask import Flask,request,render_template
 import numpy as np
 import pandas as pd
+from src.components.data_ingestion import model_train
+
 
 from sklearn.preprocessing import StandardScaler
 from src.pipeline.predict_pipeline import CustomData,PredictPipeline
@@ -11,6 +13,11 @@ app=application
 app.debug=True
 
 ## Route for a home page
+
+
+@app.template_filter('number_format')
+def number_format(value):
+    return "{:,.2f}".format(value)
 
 @app.route('/')
 def index():
@@ -47,4 +54,5 @@ def predict_datapoint():
     
 
 if __name__=="__main__":
+    #model_train()
     app.run(host="0.0.0.0")        
